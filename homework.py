@@ -69,15 +69,16 @@ class SportsWalking(Training):
     HEIGHT_M = 100
     COEFF_1: float = 0.035
     COEFF_2: float = 0.029
+    KM_CONST = 0.278
     """Тренировка: спортивная ходьба."""
     def __init__(self, action, duration, weight, height):
         super().__init__(action, duration, weight)
         self.height = height
 
     def get_spent_calories(self) -> float:
-        speed_ms = self.get_mean_speed() * 0.27777778
+        speed_ms = self.get_mean_speed() * self.KM_CONST
         height_in_m = self.height / self.HEIGHT_M
-        minutes_training = self.duration * 60
+        minutes_training = self.duration * self.MINUTE
         return ((self.COEFF_1 * self.weight
                  + (speed_ms**2 / height_in_m)
                  * self.COEFF_2 * self.weight)
@@ -88,6 +89,7 @@ class Swimming(Training):
     """Тренировка: плавание."""
     COEFF_3: float = 1.1
     COEFF_4: int = 2
+    LEN_STEP: float = 1.38
 
     def __init__(self, action: int, duration: float,
                  weight: float, length_pool: float,
@@ -95,7 +97,6 @@ class Swimming(Training):
         super().__init__(action, duration, weight)
         self.length_pool = length_pool
         self.count_pool = count_pool
-        self.LEN_STEP = 1.38
 
     def get_mean_speed(self) -> float:
         return (self.length_pool
