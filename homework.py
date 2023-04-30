@@ -96,10 +96,10 @@ class Swimming(Training):
         self.length_pool = length_pool
         self.count_pool = count_pool
         self.LEN_STEP = 1.38
-#лина_бассейна * count_pool / M_IN_KM / время_тренировки 
+
     def get_mean_speed(self) -> float:
-        return ((self.length_pool
-                * self.count_pool) / self.M_IN_KM
+        return (self.length_pool
+                * self.count_pool / self.M_IN_KM
                 / self.duration)
 
     def get_spent_calories(self) -> float:
