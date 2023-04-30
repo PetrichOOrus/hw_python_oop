@@ -1,6 +1,6 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
-    def __init__(self, training_type, duration, speed, distance, calories):
+    def __init__(self, training_type, duration, distance, speed, calories):
         self.training_type = training_type
         self.duration = duration
         self.speed = speed
@@ -124,7 +124,7 @@ def read_package(workout_type: str, data: list) -> Training:
 def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
-    return print(info.get_message())
+    return info.get_message()
 
 
 if __name__ == '__main__':
@@ -136,4 +136,4 @@ if __name__ == '__main__':
 
     for workout_type, data in packages:
         training = read_package(workout_type, data)
-        main(training)
+        print(main(training))
